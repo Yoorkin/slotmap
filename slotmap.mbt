@@ -50,6 +50,14 @@ pub fn[T] SlotMap::free(arena : Self[T], id : Id) -> Unit {
 }
 
 ///|
+pub fn[T] SlotMap::get(arena : Self[T], id : Id) -> T? {
+  let { gen, idx } = id
+  guard idx != -1 else { None }
+  guard arena.gens[idx] == gen else { None }
+  arena.slots[idx]
+}
+
+///|
 #alias("_[_]")
 pub fn[T] SlotMap::read(arena : Self[T], id : Id) -> T {
   let { gen, idx } = id
