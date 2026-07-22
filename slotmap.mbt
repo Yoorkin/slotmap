@@ -36,7 +36,7 @@ pub fn[T] SlotMap::allocate_with(arena : Self[T], f : (Id) -> T) -> Id {
 struct Id {
   gen : UInt
   idx : Int
-} derive(Eq, Hash, Compare)
+} derive(Eq, Hash, Compare, ToJson, FromJson, Debug)
 
 ///|
 pub fn[T] SlotMap::free(arena : Self[T], id : Id) -> Unit {
